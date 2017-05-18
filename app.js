@@ -1,21 +1,25 @@
-var app = angular.module("myApp",['ngRoute']);
+var app = angular.module("myApp",['ui.router']);
 
 app.config(["$locationProvider", function($locationProvider){
 	$locationProvider.hashPrefix('')
 }])
 
-app.config(["$routeProvider", function($routeProvider){
+app.config(["$stateProvider", function($stateProvider){
 	
-	$routeProvider
-		.when("/",{
+	$stateProvider
+		.state("home",{
+			url:'/',
 			templateUrl: "pages/home.html",
 			controller: "myHomeController"
 		})
-		.when("/register",{
+		.state("register",{
+			url:'/register',
 			templateUrl : "pages/register.html",
-			controller: "myRegisterController"
+			controller: "myRegisterController",
+			caseInsensitiveMatch : true
 		})
-		.when("/login", {
+		.state("login", {
+			url:'/login',
 			templateUrl: "pages/login.html",
 			controller:"myLoginController"
 		})
